@@ -36,7 +36,12 @@ public class DBFacade {
     protected static String username= "root";
     protected static String pasword = "root";
     
-//     protected static String pasword = "medirep@123Incentive";
+    // kasun's pw
+//     protected static String pasword = "VC@123Customer";
+     
+//     VCCustomer
+//     VC@123Customer
+    
     
 //    protected static String username= "sa";
 //    protected static String pasword = "Medirep@#12345";

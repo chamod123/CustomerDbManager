@@ -54,6 +54,7 @@ public abstract class CustomerDataUpdate extends javax.swing.JDialog {
 
         }
 
+        customer_id.hide();
     }
 
     public abstract void getSelectedValue(String Para1, String para2, String para3, String para4, String para5);
@@ -87,6 +88,7 @@ public abstract class CustomerDataUpdate extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         block_no = new javax.swing.JTextField();
         customer_id = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Search");
@@ -139,30 +141,41 @@ public abstract class CustomerDataUpdate extends javax.swing.JDialog {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 90, 30));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Customer TP");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        jLabel2.setText("Customer Name");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-        jPanel1.add(customer_tp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 340, -1));
-        jPanel1.add(customer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 340, -1));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel2.setText("Change Customer Data");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 170, 30));
+        jPanel1.add(customer_tp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 340, -1));
+        jPanel1.add(customer_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 340, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Email");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
-        jPanel1.add(customer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 340, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jPanel1.add(customer_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 340, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Date");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        jPanel1.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 340, -1));
-        jPanel1.add(branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 340, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        jPanel1.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 340, -1));
+        jPanel1.add(branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 340, -1));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Branch");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Block No");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
-        jPanel1.add(block_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 340, -1));
-        jPanel1.add(customer_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 60, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        jPanel1.add(block_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 340, -1));
+        jPanel1.add(customer_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 30, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Customer Name");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -233,6 +246,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

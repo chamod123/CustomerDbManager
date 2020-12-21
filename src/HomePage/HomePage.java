@@ -5,9 +5,8 @@
  */
 package HomePage;
 
-
-
 import Setup.CustomerDataUpload;
+import Setup.CustomerMobileDataUpload;
 import Setup.CustomerSearch;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import java.awt.Dimension;
@@ -128,14 +127,19 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        CustomerDataUpload customer_data = new CustomerDataUpload();
-                desktopPane.add(customer_data);
-                customer_data.setVisible(true);
-                customer_data = null;
+//        CustomerDataUpload customer_data = new CustomerDataUpload();
+//        desktopPane.add(customer_data);
+//        customer_data.setVisible(true);
+//        customer_data = null;
+
+        CustomerMobileDataUpload customer_data = new CustomerMobileDataUpload();
+        desktopPane.add(customer_data);
+        customer_data.setVisible(true);
+        customer_data = null;
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         CustomerSearch customer_filter = new CustomerSearch();
+        CustomerSearch customer_filter = new CustomerSearch();
         desktopPane.add(customer_filter);
         customer_filter.setVisible(true);
         customer_filter = null;
