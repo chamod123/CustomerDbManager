@@ -17,6 +17,17 @@ import java.sql.ResultSet;
 public class LocationData {
      DBFacade db = new DBFacade();
      
+     public ResultSet getLocation() {
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * FROM location ";
+            rs = (ResultSet) db.fetch(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+     
       public Location searchLocation(String branch_name) {
 
         Location location = new Location();
@@ -62,4 +73,7 @@ public class LocationData {
         }
         return val;
     }
+      
+      
+     
 }

@@ -7,6 +7,7 @@ package MasterClass;
 
 import DBClass.DBFacade;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -32,6 +33,62 @@ public class CustomerMobileData {
 
             pst2 = null;
             // rsmax = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return val;
+    }
+    
+    
+     
+      public ResultSet searchCustomerMobile(String customer_tp, String branch_name, String location_name) {
+        ResultSet rs = null;
+        try {
+            String sql = "";
+
+        
+            if (!"".equals(customer_tp.trim())) {
+                System.out.println("awaaaaa");
+                if ("".equals(sql)) {
+                    sql = "SELECT * FROM customer_mobile_data  WHERE `customer_mobile` like '%" + customer_tp + "%'";
+                } else {
+                    sql = sql + " AND `customer_mobile` like '%" + customer_tp + "%'";
+                }
+            }
+
+            if (!"Select".equals(branch_name.trim())) {
+                if ("".equals(sql)) {
+                    sql = "SELECT * FROM customer_mobile_data  WHERE `branch_name` like '%" + branch_name + "%'";
+                } else {
+                    sql = sql + " AND `branch_name` like '%" + branch_name + "%'";
+                }
+            }
+
+            if (!"Select".equals(location_name.trim())) {
+                if ("".equals(sql)) {
+                    sql = "SELECT * FROM customer_mobile_data  WHERE `location_name` like '%" + location_name + "%'";
+                } else {
+                    sql = sql + " AND `location_name` like '%" + location_name + "%'";
+                }
+            }
+
+//            sql = "SELECT * FROM customer  WHERE `customer_name` like '%" + customer_name + "%' AND `customer_tp` like '%" + customer_tp + "%'";
+//            , `branch` like '%" + branch + "%', `block` = '%" + block + "%'
+            rs = (ResultSet) db.fetch(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public int updateMobileStatus(String id, int status) {
+        int val = 0;
+        try {
+            PreparedStatement pst = (PreparedStatement) db.psmt("UPDATE `customer_mobile_data` SET `status` = '" + status + "'  WHERE `id` = '" + id + "'");
+            val = pst.executeUpdate();
+            System.err.println("update complete");
+            val = 1;
         } catch (Exception e) {
             e.printStackTrace();
         }
