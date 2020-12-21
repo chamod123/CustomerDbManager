@@ -10,6 +10,7 @@ import MasterClass.BranchData;
 import MasterClass.CustomerData;
 import MasterClass.CustomerMobileData;
 import MasterClass.LocationData;
+import java.awt.Component;
 import popups.CustomerDataUpdate;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -79,7 +80,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
     private void ShowGrid() {
         String data[][] = null;
-        String colu[] = new String[]{"TP", "Branch", "Location","Status","suctomer mobile id"};
+        String colu[] = new String[]{"TP", "Branch", "Location", "Status", "suctomer mobile id"};
         DefaultTableModel model = new DefaultTableModel(data, colu) {
             //@Override
             public boolean isCellEditable(int x, int y) {
@@ -182,7 +183,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "TP", "Branch", "Location"
+                "TP", "Branch", "Location", "Status"
             }
         ));
         tblGrid.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,7 +193,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblGrid);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 1240, 570));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1240, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,15 +214,14 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void branch_save_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branch_save_btnActionPerformed
-       search_data();
+        search_data();
 
 
     }//GEN-LAST:event_branch_save_btnActionPerformed
 
-    public void search_data(){
-     ShowGrid();
+    public void search_data() {
+        ShowGrid();
 
-       
         String customer_tp = customer_tp_txt.getText();
         String branch_name = branch_select.getSelectedItem().toString();
         String location_name = location_select.getSelectedItem().toString();
@@ -236,7 +236,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
             while (set.next()) {
 //                String catagary_name = set.getString("catagary_name");
 
-                model.addRow(new Object[]{set.getString("customer_mobile"), set.getString("branch_name"), set.getString("location_name"), set.getBoolean("status")?"Active":"Deactive"});
+                model.addRow(new Object[]{set.getString("customer_mobile"), set.getString("branch_name"), set.getString("location_name"), set.getBoolean("status") ? "Active" : "Deactive", set.getString("id")});
             }
             set.close();
             set = null;
@@ -247,16 +247,44 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
     }
     private void tblGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGridMouseClicked
         if (evt.getClickCount() == 2) {
-            System.out.println("popup page came  >>>>>");
-            CustomerDataUpdate MAS = new CustomerDataUpdate(null, true, 1, tblGrid.getValueAt(tblGrid.getSelectedRow(), 7).toString().trim()) {
-                @Override
-                public void getSelectedValue(String Para1, String para2, String para3, String para4, String para5) {
 
+            if ("Active".equals(tblGrid.getValueAt(tblGrid.getSelectedRow(), 3).toString())) {
+                int result = JOptionPane.showConfirmDialog((Component) null, "Do you need to Block This number",
+                        "alert", JOptionPane.OK_CANCEL_OPTION);
+
+                if (result == 0) {
+                    int val = customerMobileData.updateMobileStatus(tblGrid.getValueAt(tblGrid.getSelectedRow(), 4).toString(), 0);
+                    if (val != 0) {
+                        JOptionPane.showMessageDialog(null, "Number Blocked");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Number Blocked Not Complete");
+                    }
                 }
-            };
-            MAS.setVisible(true);
-            MAS = null;
-search_data();
+
+            } else {
+                int result = JOptionPane.showConfirmDialog((Component) null, "Do you need to Activate This number",
+                        "alert", JOptionPane.OK_CANCEL_OPTION);
+                if (result == 0) {
+                    int val = customerMobileData.updateMobileStatus(tblGrid.getValueAt(tblGrid.getSelectedRow(), 4).toString(), 1);
+                    if (val != 0) {
+                        JOptionPane.showMessageDialog(null, "Number Activated");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Number Activated Not Complete");
+                    }
+                }
+
+            }
+
+//            System.out.println("popup page came  >>>>>");
+//            CustomerDataUpdate MAS = new CustomerDataUpdate(null, true, 1, tblGrid.getValueAt(tblGrid.getSelectedRow(), 7).toString().trim()) {
+//                @Override
+//                public void getSelectedValue(String Para1, String para2, String para3, String para4, String para5) {
+//
+//                }
+//            };
+//            MAS.setVisible(true);
+//            MAS = null;
+            search_data();
         }
     }//GEN-LAST:event_tblGridMouseClicked
 

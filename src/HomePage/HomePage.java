@@ -144,8 +144,8 @@ public class HomePage extends javax.swing.JFrame {
 //        desktopPane.add(customer_filter);
 //        customer_filter.setVisible(true);
 //        customer_filter = null;
-        
-          CustomerMobileDataSearch customer_filter = new CustomerMobileDataSearch();
+
+        CustomerMobileDataSearch customer_filter = new CustomerMobileDataSearch();
         desktopPane.add(customer_filter);
         customer_filter.setVisible(true);
         customer_filter = null;
