@@ -6,6 +6,7 @@
 package HomePage;
 
 import Setup.CustomerDataUpload;
+import Setup.CustomerMobileDataSearch;
 import Setup.CustomerMobileDataUpload;
 import Setup.CustomerSearch;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
@@ -139,7 +140,12 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        CustomerSearch customer_filter = new CustomerSearch();
+//        CustomerSearch customer_filter = new CustomerSearch();
+//        desktopPane.add(customer_filter);
+//        customer_filter.setVisible(true);
+//        customer_filter = null;
+        
+          CustomerMobileDataSearch customer_filter = new CustomerMobileDataSearch();
         desktopPane.add(customer_filter);
         customer_filter.setVisible(true);
         customer_filter = null;
