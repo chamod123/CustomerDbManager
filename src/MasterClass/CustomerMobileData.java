@@ -41,7 +41,7 @@ public class CustomerMobileData {
     
     
      
-      public ResultSet searchCustomerMobile(String customer_tp, String branch_name, String location_name) {
+      public ResultSet searchCustomerMobile(String customer_tp, String branch_name, String location_name, boolean is_active) {
         ResultSet rs = null;
         try {
             String sql = "";
@@ -71,6 +71,12 @@ public class CustomerMobileData {
                     sql = sql + " AND `location_name` like '%" + location_name + "%'";
                 }
             }
+            
+            if (is_active) {
+                  sql = sql + " AND `status`  = " + is_active;
+            }
+            
+            
 
 //            sql = "SELECT * FROM customer  WHERE `customer_name` like '%" + customer_name + "%' AND `customer_tp` like '%" + customer_tp + "%'";
 //            , `branch` like '%" + branch + "%', `block` = '%" + block + "%'
