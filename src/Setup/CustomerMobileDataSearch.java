@@ -169,7 +169,8 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Customer Filter");
+        setTitle("Customer Mobile Data Filter");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/a8975e3784874a1fc27d614bf86aa187.jpg"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
