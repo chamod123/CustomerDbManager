@@ -22,10 +22,13 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Cell;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -83,15 +86,23 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
             ResultSet set = locationData.getLocation();
             set.last();
             set.beforeFirst();
+             DefaultListModel dlmA = new DefaultListModel(); // For list A
             while (set.next()) {
                 String block_no = set.getString("location_name");
-                location_select.addItem(block_no);
+//                location_select.addItem(block_no);
+
+               
+                dlmA.addElement(block_no);
+
+
+//                location_m_select.addE;
             }
+                location_m_select.setModel(dlmA);
             set.close();
             set = null;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Block Loading not complete ");
+            JOptionPane.showMessageDialog(null, "Block Loading not complete " + e);
         }
     }
 
@@ -151,10 +162,11 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         branch_select = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        location_select = new javax.swing.JComboBox<>();
         branch_save_btn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         is_only_active = new javax.swing.JCheckBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        location_m_select = new javax.swing.JList<>();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -183,7 +195,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblGrid);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 1240, 510));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 1240, 440));
 
         branch_save_btn1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         branch_save_btn1.setText("Export to CSV file");
@@ -207,10 +219,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         branch_select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jLabel4.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
-        jLabel4.setText("Location");
-
-        location_select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        location_select.setToolTipText("");
+        jLabel4.setText("Locations");
 
         branch_save_btn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         branch_save_btn.setText("Search");
@@ -223,53 +232,64 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jLabel7.setText("Customer TP");
 
+        jScrollPane2.setViewportView(location_m_select);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(is_only_active)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(branch_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addComponent(is_only_active))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(customer_tp_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(branch_select, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(location_select, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(branch_select, 0, 363, Short.MAX_VALUE)
+                            .addComponent(customer_tp_txt))
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(branch_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(location_select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(branch_select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customer_tp_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(branch_save_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(is_only_active, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customer_tp_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(branch_select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(is_only_active)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(branch_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1240, 100));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1240, 160));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -291,11 +311,13 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
     private void branch_save_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branch_save_btnActionPerformed
 
-            if(!"".equals(customer_tp_txt.getText().trim()) || branch_select.getSelectedIndex() != 0 || location_select.getSelectedIndex() != 0){
-                    search_data();
-            }else{
+       
+       
+        if (!"".equals(customer_tp_txt.getText().trim()) || branch_select.getSelectedIndex() != 0 || !location_m_select.isSelectionEmpty()) {
+            search_data();
+        } else {
             JOptionPane.showMessageDialog(null, "Enter What do you want to search ");
-            }
+        }
 
     }//GEN-LAST:event_branch_save_btnActionPerformed
 
@@ -304,15 +326,16 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
         String customer_tp = customer_tp_txt.getText();
         String branch_name = branch_select.getSelectedItem().toString();
-        String location_name = location_select.getSelectedItem().toString();
+//        String location_name = location_select.getSelectedItem().toString();
         boolean is_active = is_only_active.isSelected();
-
         
+         List<String> location_names = location_m_select.getSelectedValuesList();
+        System.out.println("location_names " + location_names); 
 
         DefaultTableModel model = (DefaultTableModel) tblGrid.getModel();
 
         try {
-            ResultSet set = customerMobileData.searchCustomerMobile(customer_tp, branch_name, location_name,is_active);
+            ResultSet set = customerMobileData.searchCustomerMobile(customer_tp, branch_name, location_names, is_active);
             set.last();
             set.beforeFirst();
             int x = 1;
@@ -374,14 +397,14 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
     private void branch_save_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branch_save_btn1ActionPerformed
 
         try {
-              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");  
-   LocalDateTime now = LocalDateTime.now();  
-   System.out.println(dtf.format(now));  
-   
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+            LocalDateTime now = LocalDateTime.now();
+            System.out.println(dtf.format(now));
+
             HSSFWorkbook fWorkbook = new HSSFWorkbook();
             HSSFSheet fSheet = fWorkbook.createSheet("new Sheet");
             HSSFFont sheetTitleFont = fWorkbook.createFont();
-            File file = new File("D:\\contact_data_"+dtf.format(now)+".xls");
+            File file = new File("D:\\contact_data_" + dtf.format(now) + ".xls");
             HSSFCellStyle cellStyle = fWorkbook.createCellStyle();
 
 //            sheetTitleFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -391,12 +414,12 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
             for (int i = 0; i < model.getRowCount(); i++) {
                 HSSFRow fRow = fSheet.createRow((short) i);
 //                if ("Active".equals(model.getValueAt(i, 3).toString())) {
-                    for (int j = 0; j < 3; j++) {
-                        HSSFCell cell = fRow.createCell((short) j);
-                        cell.setCellValue(model.getValueAt(i, j).toString());
-                        cell.setCellStyle(cellStyle);
+                for (int j = 0; j < 3; j++) {
+                    HSSFCell cell = fRow.createCell((short) j);
+                    cell.setCellValue(model.getValueAt(i, j).toString());
+                    cell.setCellStyle(cellStyle);
 
-                    }
+                }
 //                }
             }
             FileOutputStream fileOutputStream;
@@ -409,15 +432,15 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
             for (int i = 0; i < 3; i++) {
                 HSSFRow fRow = fSheet.createRow((short) i);
 //                if ("Active".equals(model.getValueAt(i, 3).toString())) {
-                    for (int j = 0; j < 3; j++) {
-                        HSSFCell cell = fRow.createCell((short) j);
-                        cell.setCellValue(model.getValueAt(i, j).toString());
+                for (int j = 0; j < 3; j++) {
+                    HSSFCell cell = fRow.createCell((short) j);
+                    cell.setCellValue(model.getValueAt(i, j).toString());
 
-                        System.out.println(model.getColumnName(j));
-                    }
+                    System.out.println(model.getColumnName(j));
+                }
 //                }
             }
-            JOptionPane.showMessageDialog(null, "Export completed to D:\\contact_data_"+dtf.format(now)+".xls");
+            JOptionPane.showMessageDialog(null, "Export completed to D:\\contact_data_" + dtf.format(now) + ".xls");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Export not completed");
@@ -440,7 +463,8 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> location_select;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> location_m_select;
     private javax.swing.JTable tblGrid;
     // End of variables declaration//GEN-END:variables
 }
