@@ -86,18 +86,16 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
             ResultSet set = locationData.getLocation();
             set.last();
             set.beforeFirst();
-             DefaultListModel dlmA = new DefaultListModel(); // For list A
+            DefaultListModel dlmA = new DefaultListModel(); // For list A
             while (set.next()) {
                 String block_no = set.getString("location_name");
 //                location_select.addItem(block_no);
 
-               
                 dlmA.addElement(block_no);
-
 
 //                location_m_select.addE;
             }
-                location_m_select.setModel(dlmA);
+            location_m_select.setModel(dlmA);
             set.close();
             set = null;
 
@@ -311,8 +309,6 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
     private void branch_save_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branch_save_btnActionPerformed
 
-       
-       
         if (!"".equals(customer_tp_txt.getText().trim()) || branch_select.getSelectedIndex() != 0 || !location_m_select.isSelectionEmpty()) {
             search_data();
         } else {
@@ -328,9 +324,9 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         String branch_name = branch_select.getSelectedItem().toString();
 //        String location_name = location_select.getSelectedItem().toString();
         boolean is_active = is_only_active.isSelected();
-        
-         List<String> location_names = location_m_select.getSelectedValuesList();
-        System.out.println("location_names " + location_names); 
+
+        List<String> location_names = location_m_select.getSelectedValuesList();
+        System.out.println("location_names " + location_names);
 
         DefaultTableModel model = (DefaultTableModel) tblGrid.getModel();
 
