@@ -84,7 +84,7 @@ public class HomePage extends javax.swing.JFrame {
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenu1.setBackground(new java.awt.Color(51, 51, 255));
-        jMenu1.setText("Upload ");
+        jMenu1.setText("          Upload           ");
         jMenu1.setFont(new java.awt.Font("Sitka Small", 1, 16)); // NOI18N
 
         jMenuItem12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -98,10 +98,10 @@ public class HomePage extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu5.setText("Filter");
+        jMenu5.setText("     Filter          ");
         jMenu5.setFont(new java.awt.Font("Sitka Small", 1, 16)); // NOI18N
 
-        jMenuItem1.setText("Customer Filter");
+        jMenuItem1.setText("Mobile Data Filter");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);

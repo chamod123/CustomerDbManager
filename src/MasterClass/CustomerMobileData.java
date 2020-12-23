@@ -8,6 +8,7 @@ package MasterClass;
 import DBClass.DBFacade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 /**
  *
@@ -38,15 +39,15 @@ public class CustomerMobileData {
         }
         return val;
     }
-    
-    
-     
-      public ResultSet searchCustomerMobile(String customer_tp, String branch_name, String location_name, boolean is_active) {
+
+    public ResultSet searchCustomerMobile(String customer_tp, String branch_name, List<String> location_names, boolean is_active) {
         ResultSet rs = null;
         try {
             String sql = "";
+            String location_sql = "";
 
-        
+             System.out.println("!location_names.isEmpty() " + !location_names.isEmpty());
+                                  
             if (!"".equals(customer_tp.trim())) {
                 System.out.println("awaaaaa");
                 if ("".equals(sql)) {
@@ -64,19 +65,41 @@ public class CustomerMobileData {
                 }
             }
 
-            if (!"Select".equals(location_name.trim())) {
+            
+            
+            
+             if (!location_names.isEmpty()) {
                 if ("".equals(sql)) {
-                    sql = "SELECT * FROM customer_mobile_data  WHERE `location_name` like '%" + location_name + "%'";
+                    System.out.println("true");
+                    for (int i = 0; location_names.size() > i; i++) {
+                        System.out.println("i = " + i);
+                        if (i == 0) {
+                            sql = "SELECT * FROM customer_mobile_data  WHERE `location_name` like '%" + location_names.get(i) + "%'";
+                        } else {
+                            sql = sql + "OR `location_name` like '%" + location_names.get(i) + "%' ";
+                        }
+                    }
+
                 } else {
-                    sql = sql + " AND `location_name` like '%" + location_name + "%'";
+                    System.out.println("false " + location_names.size() );
+                    for (int i = 0; location_names.size() > i; i++) {
+                        System.out.println("i = " + i);
+                        if (i == 0) {
+                            sql = "SELECT * FROM ("+sql+")customer_mobile_data  WHERE `location_name` like '%" + location_names.get(i) + "%'";
+                        } else {
+                            sql = sql + "OR `location_name` like '%" + location_names.get(i) + "%' ";
+                        }
+                    }
                 }
             }
-            
+             
+             
+             
+           
+
             if (is_active) {
-                  sql = sql + " AND `status`  = " + is_active;
+                sql = sql + " AND `status`  = " + is_active;
             }
-            
-            
 
 //            sql = "SELECT * FROM customer  WHERE `customer_name` like '%" + customer_name + "%' AND `customer_tp` like '%" + customer_tp + "%'";
 //            , `branch` like '%" + branch + "%', `block` = '%" + block + "%'
