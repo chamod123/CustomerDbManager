@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Cell;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -195,14 +196,14 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 1240, 440));
 
-        branch_save_btn1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        branch_save_btn1.setText("Export to CSV file");
+        branch_save_btn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        branch_save_btn1.setText("Export to CSV File");
         branch_save_btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 branch_save_btn1ActionPerformed(evt);
             }
         });
-        jPanel1.add(branch_save_btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 710, 150, 40));
+        jPanel1.add(branch_save_btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 710, 170, 40));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -219,7 +220,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jLabel4.setText("Locations");
 
-        branch_save_btn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        branch_save_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         branch_save_btn.setText("Search");
         branch_save_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,11 +281,11 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(is_only_active)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(branch_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(branch_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1240, 160));
@@ -393,6 +394,17 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
     private void branch_save_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branch_save_btn1ActionPerformed
 
         try {
+            String file_path = "";
+            JFileChooser chose_file = new JFileChooser();
+            chose_file.setMultiSelectionEnabled(true);
+            chose_file.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chose_file.setFileHidingEnabled(false);
+            if (chose_file.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                java.io.File f = chose_file.getSelectedFile();
+                file_path = f.getPath();
+                System.err.println(f.getPath());
+            }
+
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
             LocalDateTime now = LocalDateTime.now();
             System.out.println(dtf.format(now));
@@ -400,7 +412,8 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
             HSSFWorkbook fWorkbook = new HSSFWorkbook();
             HSSFSheet fSheet = fWorkbook.createSheet("new Sheet");
             HSSFFont sheetTitleFont = fWorkbook.createFont();
-            File file = new File("D:\\contact_data_" + dtf.format(now) + ".xls");
+            System.out.println(file_path+"\\contact_data_" + dtf.format(now) + ".xls");
+            File file = new File(file_path+"\\contact_data_" + dtf.format(now) + ".xls");
             HSSFCellStyle cellStyle = fWorkbook.createCellStyle();
 
 //            sheetTitleFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);

@@ -105,7 +105,7 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
         jLabel1.setText("Upload Customer Data");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 200, 30));
 
-        branch_save_btn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        branch_save_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         branch_save_btn.setText("Save");
         branch_save_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
