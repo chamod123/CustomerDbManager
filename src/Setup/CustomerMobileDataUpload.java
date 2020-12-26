@@ -45,12 +45,12 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
      */
     public CustomerMobileDataUpload() {
         initComponents();
-          load_catagary_1();
+        load_catagary_1();
         ShowGrid();
-       
+
     }
-    
-     //data load to catagary 01
+
+    //data load to catagary 01
     private void load_catagary_1() {
         try {
             ResultSet set = catagary1Data.GetCatagary1();
@@ -148,6 +148,7 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
                 "TP", "Branch", "Location"
             }
         ));
+        tblGrid.getTableHeader().setReorderingAllowed(false);
         tblGrid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblGridMouseClicked(evt);
@@ -235,8 +236,9 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
             }
 
             JOptionPane.showMessageDialog(null, " Save Succesfull ");
-
+            load_catagary_1();
             ShowGrid();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, " Error in save");
 

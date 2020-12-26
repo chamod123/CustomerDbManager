@@ -42,7 +42,7 @@ public class CustomerMobileData {
         return val;
     }
 
-    public ResultSet searchCustomerMobile(String customer_tp, String branch_name, List<String> location_names, boolean is_active) {
+    public ResultSet searchCustomerMobile(String customer_tp, String branch_name, List<String> location_names, boolean is_active, String catogary_name) {
         ResultSet rs = null;
         try {
             String sql = "";
@@ -64,6 +64,14 @@ public class CustomerMobileData {
                     sql = "SELECT * FROM customer_mobile_data  WHERE `branch_name` like '%" + branch_name + "%'";
                 } else {
                     sql = sql + " AND `branch_name` like '%" + branch_name + "%'";
+                }
+            }
+
+            if (!"Select".equals(catogary_name.trim())) {
+                if ("".equals(sql)) {
+                    sql = "SELECT * FROM customer_mobile_data  WHERE `catagary_name` like '%" + catogary_name + "%'";
+                } else {
+                    sql = sql + " AND `catagary_name` like '%" + catogary_name + "%'";
                 }
             }
 
