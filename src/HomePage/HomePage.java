@@ -5,6 +5,7 @@
  */
 package HomePage;
 
+import Setup.CatagaryRegistration;
 import Setup.CustomerDataUpload;
 import Setup.CustomerMobileDataSearch;
 import Setup.CustomerMobileDataUpload;
@@ -56,6 +57,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -86,6 +88,15 @@ public class HomePage extends javax.swing.JFrame {
         jMenu1.setBackground(new java.awt.Color(51, 51, 255));
         jMenu1.setText("          Upload           ");
         jMenu1.setFont(new java.awt.Font("Sitka Small", 1, 16)); // NOI18N
+
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem2.setText("Catagary Registration");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
         jMenuItem12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem12.setText("CSV Uploder");
@@ -150,6 +161,13 @@ public class HomePage extends javax.swing.JFrame {
         customer_filter.setVisible(true);
         customer_filter = null;
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        CatagaryRegistration catogary_register = new CatagaryRegistration();
+        desktopPane.add(catogary_register);
+        catogary_register.setVisible(true);
+        catogary_register = null;
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 //
 //    /**
 //     * @param args the command line arguments
@@ -198,5 +216,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

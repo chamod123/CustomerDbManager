@@ -1,0 +1,12 @@
+
+
+
+//2020-12-26
+//create catagory table
+
+CREATE TABLE `catagary` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `catagary_name` varchar(250) NOT NULL,
+  `catagary_code` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
