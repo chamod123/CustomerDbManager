@@ -7,9 +7,11 @@ package Setup;
 
 import MasterClass.BlockData;
 import MasterClass.BranchData;
+import MasterClass.Catagary1Data;
 import MasterClass.CustomerData;
 import MasterClass.CustomerMobileData;
 import MasterClass.LocationData;
+import Model.Catagary;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.io.BufferedReader;
@@ -36,13 +38,34 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
     BlockData blockData = new BlockData();
     CustomerMobileData customerMobileData = new CustomerMobileData();
     LocationData locationData = new LocationData();
+    Catagary1Data catagary1Data = new Catagary1Data();
 
     /**
      * Creates new form Branch
      */
     public CustomerMobileDataUpload() {
         initComponents();
+          load_catagary_1();
         ShowGrid();
+       
+    }
+    
+     //data load to catagary 01
+    private void load_catagary_1() {
+        try {
+            ResultSet set = catagary1Data.GetCatagary1();
+            set.last();
+            set.beforeFirst();
+            while (set.next()) {
+                String catagary_name = set.getString("catagary_name");
+                catogary_select.addItem(catagary_name);
+            }
+            set.close();
+            set = null;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Catagary 01 Loading not complete ");
+        }
     }
 
     private void ShowGrid() {
@@ -92,6 +115,8 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
         tblGrid = new javax.swing.JTable();
         csv_file_path = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        catogary_select = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -142,6 +167,13 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 50, 160, 40));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Catogary of the Data");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 710, 170, 30));
+
+        catogary_select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Catogary" }));
+        jPanel1.add(catogary_select, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 712, 360, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,16 +192,19 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
 
     private void branch_save_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branch_save_btnActionPerformed
         try {
+
+            if (catogary_select.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, " Select the catogary ! ");
+                return;
+            }
             int rows = tblGrid.getRowCount();
 
             for (int i = 0; i < rows; i++) {
 
                 DefaultTableModel model = (DefaultTableModel) tblGrid.getModel();
                 String customer_mobile = model.getValueAt(i, 0).toString().trim();
-                 String branch_name = model.getValueAt(i, 1).toString().trim();
-                  String location_name = model.getValueAt(i, 2).toString().trim();
-                
-                
+                String branch_name = model.getValueAt(i, 1).toString().trim();
+                String location_name = model.getValueAt(i, 2).toString().trim();
 
 //                int sub_no = Integer.parseInt(model.getValueAt(i, 0).toString().trim());
 //                String customer_name = model.getValueAt(i, 1).toString().trim();
@@ -178,26 +213,24 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
 //                String date = model.getValueAt(i, 4).toString().trim();
 //                String branch = model.getValueAt(i, 5).toString().trim();
 //                String block_no = model.getValueAt(i, 6).toString().trim();
-
 //                customerData.SaveCustomer(customer_name, customer_tp, customer_email, date, branch, block_no);
-              
-
                 if (branchData.searchBranch(branch_name).getBranch_name() == null) {
                     System.out.println("new Branch");
                     branchData.SaveBranch(branch_name, "000");
                 } else {
                     System.out.println("Old Branch");
                 }
-                
-                
-                if (locationData.searchLocation(location_name).getLocation_name()== null) {
+
+                if (locationData.searchLocation(location_name).getLocation_name() == null) {
                     System.out.println("new Block");
                     locationData.SaveLocation(location_name);
                 } else {
                     System.out.println("Old Block");
                 }
-                
-                  customerMobileData.SaveCustomerMobileData(customer_mobile,branch_name,0,location_name,0);
+
+                Catagary catogary = catagary1Data.searchCatogary(catogary_select.getSelectedItem().toString().trim());
+
+                customerMobileData.SaveCustomerMobileData(customer_mobile, branch_name, 0, location_name, 0, catogary.getCatagary_name(), catogary.getId());
 
             }
 
@@ -237,17 +270,15 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
                 }
                 try {
                     String[] mobile_data = line.split(splitBy);    // use comma as separator
-                    
+
                     String mobile_no = mobile_data[0] == null | "".equals(mobile_data[0]) ? "0" : mobile_data[0];
                     String branch = mobile_data[1] == null | "".equals(mobile_data[1]) ? "" : mobile_data[1];
                     String location = mobile_data[2] == null | "".equals(mobile_data[2]) ? "" : mobile_data[2];
 
-                
-
                     model.addRow(new Object[]{mobile_no, branch, location});
                     no_of_records++;
                 } catch (Exception e) {
-                                        e.printStackTrace();
+                    e.printStackTrace();
                     continue;
                 }
             }
@@ -260,9 +291,11 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton branch_save_btn;
+    private javax.swing.JComboBox<String> catogary_select;
     private javax.swing.JTextField csv_file_path;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblGrid;

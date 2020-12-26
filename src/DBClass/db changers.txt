@@ -10,3 +10,11 @@ CREATE TABLE `catagary` (
   `catagary_code` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
+
+
+ALTER TABLE customer_mobile_data ADD catagary_name VARCHAR(250) DEFAULT NULL AFTER location_id; 
+
+ALTER TABLE customer_mobile_data ADD catagary_id INT(250) DEFAULT NULL AFTER catagary_name; 
+
+
+

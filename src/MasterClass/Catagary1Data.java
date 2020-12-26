@@ -6,6 +6,7 @@
 package MasterClass;
 
 import DBClass.DBFacade;
+import Model.Catagary;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
@@ -71,6 +72,33 @@ public class Catagary1Data {
             e.printStackTrace();
         }
         return val;
+    }
+
+    public Catagary searchCatogary(String catagary_name) {
+
+        Catagary catogary = new Catagary();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * FROM catagary WHERE `catagary_name` = '" + catagary_name + "'";
+            rs = (ResultSet) db.fetch(sql);
+
+            rs.last();
+
+            rs.beforeFirst();
+            int x = 0;
+            while (rs.next()) {
+                catogary.setId(rs.getInt("id"));
+                catogary.setCatagary_name(rs.getString("catagary_name"));
+                catogary.setCatagary_code(rs.getString("catagary_code"));
+
+                x++;
+            }
+            rs.close();
+            rs = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return catogary;
     }
 
 }

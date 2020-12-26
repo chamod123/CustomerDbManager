@@ -18,17 +18,19 @@ public class CustomerMobileData {
 
     DBFacade db = new DBFacade();
 
-    public int SaveCustomerMobileData(String customer_mobile, String branch_name, int branch_id, String location_name, int location_id) {
+    public int SaveCustomerMobileData(String customer_mobile, String branch_name, int branch_id, String location_name, int location_id, String catagary_name, int catagary_id) {
         int val = 0;
 
         try {
-            PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer_mobile_data` (`customer_mobile`,`branch_name`,`branch_id`,`location_name`,`location_id`) "
-                    + " VALUES (?,?,?,?,?);");
+            PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer_mobile_data` (`customer_mobile`,`branch_name`,`branch_id`,`location_name`,`location_id`,`catagary_name`,`catagary_id`) "
+                    + " VALUES (?,?,?,?,?,?,?);");
             pst2.setString(1, customer_mobile);
             pst2.setString(2, branch_name);
             pst2.setInt(3, branch_id);
             pst2.setString(4, location_name);
             pst2.setInt(5, location_id);
+            pst2.setString(6, catagary_name);
+            pst2.setInt(7, catagary_id);
 
             val = pst2.executeUpdate();
 
