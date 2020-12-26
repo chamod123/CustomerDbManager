@@ -47,7 +47,6 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
         initComponents();
         load_catagary_1();
         ShowGrid();
-
     }
 
     //data load to catagary 01
@@ -230,9 +229,7 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
                 }
 
                 Catagary catogary = catagary1Data.searchCatogary(catogary_select.getSelectedItem().toString().trim());
-
                 customerMobileData.SaveCustomerMobileData(customer_mobile, branch_name, 0, location_name, 0, catogary.getCatagary_name(), catogary.getId());
-
             }
 
             JOptionPane.showMessageDialog(null, " Save Succesfull ");

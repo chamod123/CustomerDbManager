@@ -90,7 +90,7 @@ public class HomePage extends javax.swing.JFrame {
         jMenu1.setFont(new java.awt.Font("Sitka Small", 1, 16)); // NOI18N
 
         jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem2.setText("Catagary Registration");
+        jMenuItem2.setText("Category Registration");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -112,6 +112,7 @@ public class HomePage extends javax.swing.JFrame {
         jMenu5.setText("     Filter          ");
         jMenu5.setFont(new java.awt.Font("Sitka Small", 1, 16)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem1.setText("Mobile Data Filter");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

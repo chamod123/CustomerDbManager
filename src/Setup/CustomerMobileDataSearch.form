@@ -319,7 +319,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="Select Catogary"/>
+                    <StringItem index="0" value="Select"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -332,7 +332,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Cambria Math" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Catogary "/>
+                <Property name="text" type="java.lang.String" value="category"/>
               </Properties>
             </Component>
           </SubComponents>

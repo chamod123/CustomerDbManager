@@ -35,7 +35,6 @@ public class CustomerMobileData {
             val = pst2.executeUpdate();
 
             pst2 = null;
-            // rsmax = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,8 +103,6 @@ public class CustomerMobileData {
                 sql = sql + " AND `status`  = " + is_active;
             }
 
-//            sql = "SELECT * FROM customer  WHERE `customer_name` like '%" + customer_name + "%' AND `customer_tp` like '%" + customer_tp + "%'";
-//            , `branch` like '%" + branch + "%', `block` = '%" + block + "%'
             rs = (ResultSet) db.fetch(sql);
 
         } catch (Exception e) {

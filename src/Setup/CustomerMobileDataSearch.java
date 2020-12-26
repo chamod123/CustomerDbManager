@@ -258,10 +258,10 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
 
         jScrollPane2.setViewportView(location_m_select);
 
-        catogary_select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Catogary" }));
+        catogary_select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jLabel5.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
-        jLabel5.setText("Catogary ");
+        jLabel5.setText("category");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
