@@ -69,7 +69,7 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
 
     private void ShowGrid() {
         String data[][] = null;
-        String colu[] = new String[]{"TP", "Branch", "Location"};
+        String colu[] = new String[]{ "Branch", "Location","TP"};
         DefaultTableModel model = new DefaultTableModel(data, colu) {
             //@Override
             public boolean isCellEditable(int x, int y) {
@@ -144,7 +144,7 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "TP", "Branch", "Location"
+                "Branch", "Location", "TP"
             }
         ));
         tblGrid.getTableHeader().setReorderingAllowed(false);
@@ -202,9 +202,10 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
             for (int i = 0; i < rows; i++) {
 
                 DefaultTableModel model = (DefaultTableModel) tblGrid.getModel();
-                String customer_mobile = model.getValueAt(i, 0).toString().trim();
-                String branch_name = model.getValueAt(i, 1).toString().trim();
-                String location_name = model.getValueAt(i, 2).toString().trim();
+                
+                String branch_name = model.getValueAt(i, 0).toString().trim();
+                String location_name = model.getValueAt(i, 1).toString().trim();
+                String customer_mobile = model.getValueAt(i, 2).toString().trim();
 
 //                int sub_no = Integer.parseInt(model.getValueAt(i, 0).toString().trim());
 //                String customer_name = model.getValueAt(i, 1).toString().trim();
@@ -214,22 +215,24 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
 //                String branch = model.getValueAt(i, 5).toString().trim();
 //                String block_no = model.getValueAt(i, 6).toString().trim();
 //                customerData.SaveCustomer(customer_name, customer_tp, customer_email, date, branch, block_no);
-                if (branchData.searchBranch(branch_name).getBranch_name() == null) {
-                    System.out.println("new Branch");
-                    branchData.SaveBranch(branch_name, "000");
-                } else {
-                    System.out.println("Old Branch");
-                }
 
-                if (locationData.searchLocation(location_name).getLocation_name() == null) {
-                    System.out.println("new Block");
-                    locationData.SaveLocation(location_name);
-                } else {
-                    System.out.println("Old Block");
-                }
+
+//                if (branchData.searchBranch(branch_name).getBranch_name() == null) {
+//                    System.out.println("new Branch");
+//                    branchData.SaveBranch(branch_name, "000");
+//                } else {
+//                    System.out.println("Old Branch");
+//                }
+//
+//                if (locationData.searchLocation(location_name).getLocation_name() == null) {
+//                    System.out.println("new Block");
+//                    locationData.SaveLocation(location_name);
+//                } else {
+//                    System.out.println("Old Block");
+//                }
 
                 Catagary catogary = catagary1Data.searchCatogary(catogary_select.getSelectedItem().toString().trim());
-                customerMobileData.SaveCustomerMobileData(customer_mobile, branch_name, 0, location_name, 0, catogary.getCatagary_name(), catogary.getId());
+                customerMobileData.SaveCustomerMobileData(customer_mobile, branch_name, location_name, catogary.getCatagary_name(), catogary.getId());
             }
 
             JOptionPane.showMessageDialog(null, " Save Succesfull ");

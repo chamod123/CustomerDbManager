@@ -6,6 +6,8 @@
 package MasterClass;
 
 import DBClass.DBFacade;
+import Model.Branch;
+import Model.Location;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -17,18 +19,39 @@ import java.util.List;
 public class CustomerMobileData {
 
     DBFacade db = new DBFacade();
+    BranchData branchData = new BranchData();
+    LocationData locationData = new LocationData();
 
-    public int SaveCustomerMobileData(String customer_mobile, String branch_name, int branch_id, String location_name, int location_id, String catagary_name, int catagary_id) {
+    public int SaveCustomerMobileData(String customer_mobile, String branch_name, String location_name, String catagary_name, int catagary_id) {
         int val = 0;
+        Branch branch;
+        Location location;
+
+        if (branchData.searchBranch(branch_name).getBranch_name() == null) {
+            System.out.println("new Branch");
+            branchData.SaveBranch(branch_name, "000");
+        } else {
+            System.out.println("Old Branch");
+        }
+        branch = branchData.searchBranch(branch_name);
+
+        if (locationData.searchLocation(location_name).getLocation_name() == null) {
+            System.out.println("new Block");
+            locationData.SaveLocation(location_name);
+        } else {
+            System.out.println("Old Block");
+        }
+        
+        location = locationData.searchLocation(location_name);
 
         try {
             PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer_mobile_data` (`customer_mobile`,`branch_name`,`branch_id`,`location_name`,`location_id`,`catagary_name`,`catagary_id`) "
                     + " VALUES (?,?,?,?,?,?,?);");
             pst2.setString(1, customer_mobile);
             pst2.setString(2, branch_name);
-            pst2.setInt(3, branch_id);
+            pst2.setInt(3, branch.getId());
             pst2.setString(4, location_name);
-            pst2.setInt(5, location_id);
+            pst2.setInt(5, location.getId());
             pst2.setString(6, catagary_name);
             pst2.setInt(7, catagary_id);
 
