@@ -8,6 +8,7 @@ package MasterClass;
 import DBClass.DBFacade;
 import Model.Branch;
 import Model.Location;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -22,7 +23,7 @@ public class CustomerMobileData {
     BranchData branchData = new BranchData();
     LocationData locationData = new LocationData();
 
-    public int SaveCustomerMobileData(String customer_mobile, String branch_name, String location_name, String catagary_name, int catagary_id) {
+    public int SaveCustomerMobileData(String customer_mobile, String branch_name, String location_name, String catagary_name, int catagary_id, String cus_no, String cus_name, String cus_mail, String cus_dob, String cus_address, String cus_gender) {
         int val = 0;
         Branch branch;
         Location location;
@@ -41,12 +42,12 @@ public class CustomerMobileData {
         } else {
             System.out.println("Old Block");
         }
-        
+
         location = locationData.searchLocation(location_name);
 
         try {
-            PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer_mobile_data` (`customer_mobile`,`branch_name`,`branch_id`,`location_name`,`location_id`,`catagary_name`,`catagary_id`) "
-                    + " VALUES (?,?,?,?,?,?,?);");
+            PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer_mobile_data` (`customer_mobile`,`branch_name`,`branch_id`,`location_name`,`location_id`,`catagary_name`,`catagary_id`,`cus_no`,`cus_name`,`cus_mail`,`cus_dob`,`cus_address`,`cus_gender`) "
+                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
             pst2.setString(1, customer_mobile);
             pst2.setString(2, branch_name);
             pst2.setInt(3, branch.getId());
@@ -54,6 +55,12 @@ public class CustomerMobileData {
             pst2.setInt(5, location.getId());
             pst2.setString(6, catagary_name);
             pst2.setInt(7, catagary_id);
+            pst2.setString(8, cus_no);
+            pst2.setString(9, cus_name);
+            pst2.setString(10, cus_mail);
+            pst2.setString(11, cus_dob);
+            pst2.setString(12, cus_address);
+            pst2.setString(13, cus_gender);
 
             val = pst2.executeUpdate();
 
