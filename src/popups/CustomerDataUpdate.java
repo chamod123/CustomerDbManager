@@ -48,8 +48,7 @@ public abstract class CustomerDataUpdate extends javax.swing.JDialog {
             customer_tp.setText(customer.getCustomer_tp());
             customer_email.setText(customer.getCustomer_email());
             date.setText(customer.getDate());
-            branch.setText(customer.getBranch());
-            block_no.setText(customer.getBlock_no());
+            branch.setText(String.valueOf(customer.getBranch_id()));
             customer_id.setText(String.valueOf(customer.getId()));
 
         }

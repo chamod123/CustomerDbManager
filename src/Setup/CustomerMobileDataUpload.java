@@ -277,114 +277,20 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
                 try {
 
                     String[] mobile_data = new String[9];
-
                     String[] mobile_data1 = line.split(splitBy);    // use comma as separator
-
-                    if (mobile_data1.length == 9) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = mobile_data1[2];
-                        mobile_data[3] = mobile_data1[3];
-                        mobile_data[4] = mobile_data1[4];
-                        mobile_data[5] = mobile_data1[5];
-                        mobile_data[6] = mobile_data1[6];
-                        mobile_data[7] = mobile_data1[7];
-                        mobile_data[8] = mobile_data1[8];
-                    } else if (mobile_data1.length == 8) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = mobile_data1[2];
-                        mobile_data[3] = mobile_data1[3];
-                        mobile_data[4] = mobile_data1[4];
-                        mobile_data[5] = mobile_data1[5];
-                        mobile_data[6] = mobile_data1[6];
-                        mobile_data[7] = mobile_data1[7];
-                        mobile_data[8] = "";
-                    } else if (mobile_data1.length == 7) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = mobile_data1[2];
-                        mobile_data[3] = mobile_data1[3];
-                        mobile_data[4] = mobile_data1[4];
-                        mobile_data[5] = mobile_data1[5];
-                        mobile_data[6] = mobile_data1[6];
-                        mobile_data[7] = "";
-                        mobile_data[8] = "";
-                    } else if (mobile_data1.length == 6) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = mobile_data1[2];
-                        mobile_data[3] = mobile_data1[3];
-                        mobile_data[4] = mobile_data1[4];
-                        mobile_data[5] = mobile_data1[5];
-                        mobile_data[6] = "";
-                        mobile_data[7] = "";
-                        mobile_data[8] = "";
-                    } else if (mobile_data1.length == 5) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = mobile_data1[2];
-                        mobile_data[3] = mobile_data1[3];
-                        mobile_data[4] = mobile_data1[4];
-                        mobile_data[5] = "";
-                        mobile_data[6] = "";
-                        mobile_data[7] = "";
-                        mobile_data[8] = "";
-                    } else if (mobile_data1.length == 4) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = mobile_data1[2];
-                        mobile_data[3] = mobile_data1[3];
-                        mobile_data[4] = "";
-                        mobile_data[5] = "";
-                        mobile_data[6] = "";
-                        mobile_data[7] = "";
-                        mobile_data[8] = "";
-                    } else if (mobile_data1.length == 3) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = mobile_data1[2];
-                        mobile_data[3] = "";
-                        mobile_data[4] = "";
-                        mobile_data[5] = "";
-                        mobile_data[6] = "";
-                        mobile_data[7] = "";
-                        mobile_data[8] = "";
-                    } else if (mobile_data1.length == 2) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = mobile_data1[1];
-                        mobile_data[2] = "";
-                        mobile_data[3] = "";
-                        mobile_data[4] = "";
-                        mobile_data[5] = "";
-                        mobile_data[6] = "";
-                        mobile_data[7] = "";
-                        mobile_data[8] = "";
-                    } else if (mobile_data1.length == 1) {
-                        mobile_data[0] = mobile_data1[0];
-                        mobile_data[1] = "";
-                        mobile_data[2] = "";
-                        mobile_data[3] = "";
-                        mobile_data[4] = "";
-                        mobile_data[5] = "";
-                        mobile_data[6] = "";
-                        mobile_data[7] = "";
-                        mobile_data[8] = "";
-                    } 
-
-                  
-                    
+                    //create data set from selected CSV file 
+                    mobile_data = dataset_create(mobile_data1);
 
                     String mobile_no = mobile_data[0] == null || "".equals(mobile_data[0]) ? "0" : mobile_data[0];
-                    String branch = mobile_data[1] == null || "".equals(mobile_data[1]) ? " " : mobile_data[1];
-                    String location = mobile_data[2] == null || "".equals(mobile_data[2]) ? " " : mobile_data[2];
+                    String branch = mobile_data[1] == null || "".equals(mobile_data[1]) ? "" : mobile_data[1];
+                    String location = mobile_data[2] == null || "".equals(mobile_data[2]) ? "" : mobile_data[2];
 
-                    String cus_no = mobile_data[3] == null || "".equals(mobile_data[3]) ? " " : mobile_data[3];
-                    String cus_name = mobile_data[4] == null || "".equals(mobile_data[4]) ? " " : mobile_data[4];
-                    String cus_mail = mobile_data[5] == null || "".equals(mobile_data[5]) ? " " : mobile_data[5];
-                    String cus_dob = mobile_data[6] == null || "".equals(mobile_data[6]) ? " " : mobile_data[6];
-                    String cus_address = mobile_data[7] == null || "".equals(mobile_data[7]) ? " " : mobile_data[7];
-                    String cus_gender = mobile_data[8] == null || "".equals(mobile_data[8]) ? " " : mobile_data[8];
+                    String cus_no = mobile_data[3] == null || "".equals(mobile_data[3]) ? "" : mobile_data[3];
+                    String cus_name = mobile_data[4] == null || "".equals(mobile_data[4]) ? "" : mobile_data[4];
+                    String cus_mail = mobile_data[5] == null || "".equals(mobile_data[5]) ? "" : mobile_data[5];
+                    String cus_dob = mobile_data[6] == null || "".equals(mobile_data[6]) ? "" : mobile_data[6];
+                    String cus_address = mobile_data[7] == null || "".equals(mobile_data[7]) ? "" : mobile_data[7];
+                    String cus_gender = mobile_data[8] == null || "".equals(mobile_data[8]) ? "" : mobile_data[8];
 
                     model.addRow(new Object[]{mobile_no, branch, location, cus_no, cus_name, cus_mail, cus_dob, cus_address, cus_gender});
                     no_of_records++;
@@ -399,6 +305,102 @@ public class CustomerMobileDataUpload extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public String[] dataset_create(String[] mobile_data1) {
+        String[] mobile_data = new String[9];
+        if (mobile_data1.length == 9) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = mobile_data1[2];
+            mobile_data[3] = mobile_data1[3];
+            mobile_data[4] = mobile_data1[4];
+            mobile_data[5] = mobile_data1[5];
+            mobile_data[6] = mobile_data1[6];
+            mobile_data[7] = mobile_data1[7];
+            mobile_data[8] = mobile_data1[8];
+        } else if (mobile_data1.length == 8) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = mobile_data1[2];
+            mobile_data[3] = mobile_data1[3];
+            mobile_data[4] = mobile_data1[4];
+            mobile_data[5] = mobile_data1[5];
+            mobile_data[6] = mobile_data1[6];
+            mobile_data[7] = mobile_data1[7];
+            mobile_data[8] = "";
+        } else if (mobile_data1.length == 7) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = mobile_data1[2];
+            mobile_data[3] = mobile_data1[3];
+            mobile_data[4] = mobile_data1[4];
+            mobile_data[5] = mobile_data1[5];
+            mobile_data[6] = mobile_data1[6];
+            mobile_data[7] = "";
+            mobile_data[8] = "";
+        } else if (mobile_data1.length == 6) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = mobile_data1[2];
+            mobile_data[3] = mobile_data1[3];
+            mobile_data[4] = mobile_data1[4];
+            mobile_data[5] = mobile_data1[5];
+            mobile_data[6] = "";
+            mobile_data[7] = "";
+            mobile_data[8] = "";
+        } else if (mobile_data1.length == 5) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = mobile_data1[2];
+            mobile_data[3] = mobile_data1[3];
+            mobile_data[4] = mobile_data1[4];
+            mobile_data[5] = "";
+            mobile_data[6] = "";
+            mobile_data[7] = "";
+            mobile_data[8] = "";
+        } else if (mobile_data1.length == 4) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = mobile_data1[2];
+            mobile_data[3] = mobile_data1[3];
+            mobile_data[4] = "";
+            mobile_data[5] = "";
+            mobile_data[6] = "";
+            mobile_data[7] = "";
+            mobile_data[8] = "";
+        } else if (mobile_data1.length == 3) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = mobile_data1[2];
+            mobile_data[3] = "";
+            mobile_data[4] = "";
+            mobile_data[5] = "";
+            mobile_data[6] = "";
+            mobile_data[7] = "";
+            mobile_data[8] = "";
+        } else if (mobile_data1.length == 2) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = mobile_data1[1];
+            mobile_data[2] = "";
+            mobile_data[3] = "";
+            mobile_data[4] = "";
+            mobile_data[5] = "";
+            mobile_data[6] = "";
+            mobile_data[7] = "";
+            mobile_data[8] = "";
+        } else if (mobile_data1.length == 1) {
+            mobile_data[0] = mobile_data1[0];
+            mobile_data[1] = "";
+            mobile_data[2] = "";
+            mobile_data[3] = "";
+            mobile_data[4] = "";
+            mobile_data[5] = "";
+            mobile_data[6] = "";
+            mobile_data[7] = "";
+            mobile_data[8] = "";
+        }
+
+        return mobile_data;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton branch_save_btn;

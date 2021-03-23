@@ -18,18 +18,20 @@ public class CustomerData {
 
     DBFacade db = new DBFacade();
 
-    public int SaveCustomer(String customer_name, String customer_tp, String customer_email, String date, String branch, String block_no) {
+    public int SaveCustomer(String customer_no, String customer_name, String customer_tp, String customer_email, String date, String address, int branch_id, int location_id) {
         int val = 0;
 
         try {
-            PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer` (`customer_name`,`customer_tp`,`customer_email`,`date`,`branch`,`block_no`) "
-                    + " VALUES (?,?,?,?,?,?);");
-            pst2.setString(1, customer_name);
-            pst2.setString(2, customer_tp);
-            pst2.setString(3, customer_email);
-            pst2.setString(4, date);
-            pst2.setString(5, branch);
-            pst2.setString(6, block_no);
+            PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer` (`customer_no`,`customer_name`,`customer_tp`,`customer_email`,`date`,`address`,`branch_id`,`location_id`) "
+                    + " VALUES (?,?,?,?,?,?,?,?);");
+            pst2.setString(1, customer_no);
+            pst2.setString(2, customer_name);
+            pst2.setString(3, customer_tp);
+            pst2.setString(4, customer_email);
+            pst2.setString(5, date);
+            pst2.setString(6, address);
+            pst2.setInt(7, branch_id);
+            pst2.setInt(8, location_id);
 
             val = pst2.executeUpdate();
 
@@ -105,8 +107,7 @@ public class CustomerData {
                 customer.setCustomer_tp(rs.getString("customer_tp"));
                 customer.setCustomer_email(rs.getString("customer_email"));
                 customer.setDate(rs.getString("date"));
-                customer.setBranch(rs.getString("branch"));
-                customer.setBlock_no(rs.getString("block_no"));
+                customer.setBranch_id(rs.getInt("branch_id"));
                 x++;
             }
             rs.close();

@@ -169,7 +169,8 @@ public class CustomerDataUpload extends javax.swing.JInternalFrame {
                 String branch = model.getValueAt(i, 5).toString().trim();
                 String block_no = model.getValueAt(i, 6).toString().trim();
 
-                customerData.SaveCustomer(customer_name, customer_tp, customer_email, date, branch, block_no);
+//                need to change
+//                customerData.SaveCustomer(customer_name, customer_tp, customer_email, date, branch, 0);
 
                 if (branchData.searchBranch(branch).getBranch_name() == null) {
                     System.out.println("new Branch");

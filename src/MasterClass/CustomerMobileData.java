@@ -22,6 +22,7 @@ public class CustomerMobileData {
     DBFacade db = new DBFacade();
     BranchData branchData = new BranchData();
     LocationData locationData = new LocationData();
+    CustomerData customerData = new CustomerData();
 
     public int SaveCustomerMobileData(String customer_mobile, String branch_name, String location_name, String catagary_name, int catagary_id, String cus_no, String cus_name, String cus_mail, String cus_dob, String cus_address, String cus_gender) {
         int val = 0;
@@ -44,6 +45,9 @@ public class CustomerMobileData {
         }
 
         location = locationData.searchLocation(location_name);
+
+        //String customer_no, String customer_name, String customer_tp, String customer_email, String date, String address, int branch_id, int location_id
+        customerData.SaveCustomer(cus_no, cus_name, customer_mobile, cus_mail, cus_dob, cus_address, branch.getId(), location.getId());
 
         try {
             PreparedStatement pst2 = (PreparedStatement) db.psmt("INSERT INTO `customer_mobile_data` (`customer_mobile`,`branch_name`,`branch_id`,`location_name`,`location_id`,`catagary_name`,`catagary_id`,`cus_no`,`cus_name`,`cus_mail`,`cus_dob`,`cus_address`,`cus_gender`) "

@@ -12,34 +12,66 @@ package Model;
 public class Customer {
 
     private int id;
+    private String customer_no;
     private String customer_name;
     private String customer_tp;
     private String customer_email;
     private String date;
-    private String branch;
-    private String block_no;
+    private String address;
+    private int branch_id;
+    private int location_id;
 
-    public Customer(int id, String customer_name, String customer_tp, String customer_email, String date, String branch, String block_no) {
+    public Customer(int id, String customer_name, String customer_tp, String customer_email, String date, int branch_id) {
         this.id = id;
         this.customer_name = customer_name;
         this.customer_tp = customer_tp;
         this.customer_email = customer_email;
         this.date = date;
-        this.branch = branch;
-        this.block_no = block_no;
+        this.branch_id = branch_id;
     }
 
-    public Customer(String customer_name, String customer_tp, String customer_email, String date, String branch, String block_no) {
+    public Customer(String customer_name, String customer_tp, String customer_email, String date, int branch_id) {
 
         this.customer_name = customer_name;
         this.customer_tp = customer_tp;
         this.customer_email = customer_email;
         this.date = date;
-        this.branch = branch;
-        this.block_no = block_no;
+        this.branch_id = branch_id;
     }
 
     public Customer() {
+    }
+
+    public String getCustomer_no() {
+        return customer_no;
+    }
+
+    public void setCustomer_no(String customer_no) {
+        this.customer_no = customer_no;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getBranch_id() {
+        return branch_id;
+    }
+
+    public void setBranch_id(int branch_id) {
+        this.branch_id = branch_id;
+    }
+
+    public int getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
     }
 
     public int getId() {
@@ -80,22 +112,6 @@ public class Customer {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getBranch() {
-        return branch;
-    }
-
-    public void setBranch(String branch) {
-        this.branch = branch;
-    }
-
-    public String getBlock_no() {
-        return block_no;
-    }
-
-    public void setBlock_no(String block_no) {
-        this.block_no = block_no;
     }
 
 }
