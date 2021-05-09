@@ -75,7 +75,7 @@ public class CustomerMobileData {
         return val;
     }
 
-    public ResultSet searchCustomerMobile(String customer_tp, String branch_name, List<String> location_names, boolean is_active, String catogary_name) {
+    public ResultSet searchCustomerMobile(String customer_tp, String branch_name, List<String> location_names, String catogary_name, int status_of_the_number) {
         ResultSet rs = null;
         try {
             String sql = "";
@@ -133,9 +133,17 @@ public class CustomerMobileData {
                 }
             }
 
-            if (is_active) {
-                sql = sql + " AND `status`  = " + is_active;
+//            if (is_active) {
+//                sql = sql + " AND `status`  = " + is_active;
+//            }
+            
+            if(status_of_the_number == 1){
+                 sql = sql + " AND `status`  = " + 1;
+            }else if(status_of_the_number == 2){
+                 sql = sql + " AND `status`  = " + 0;
             }
+            
+            
 
             rs = (ResultSet) db.fetch(sql);
 

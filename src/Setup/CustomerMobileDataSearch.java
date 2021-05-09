@@ -177,18 +177,18 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         tblGrid = new javax.swing.JTable();
         branch_save_btn1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         customer_tp_txt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         branch_select = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         branch_save_btn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        is_only_active = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         location_m_select = new javax.swing.JList<>();
         catogary_select = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        status_select = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -219,7 +219,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblGrid);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 1240, 440));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1240, 480));
 
         branch_save_btn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         branch_save_btn1.setText("Export to CSV File");
@@ -231,9 +231,6 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         jPanel1.add(branch_save_btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 710, 170, 40));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
-
-        jLabel6.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
-        jLabel6.setText("Active Numbers Only");
 
         customer_tp_txt.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
 
@@ -263,6 +260,11 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jLabel5.setText("category");
 
+        jLabel8.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jLabel8.setText("status");
+
+        status_select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Numbers", "Active Only", "Deactivated Only" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -280,13 +282,14 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
                             .addComponent(customer_tp_txt))
                         .addGap(16, 16, 16)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(status_select, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(is_only_active)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(catogary_select, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,6 +303,13 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(branch_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(customer_tp_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,18 +322,14 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(catogary_select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(is_only_active)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(branch_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(status_select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1240, 160));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1240, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -358,8 +364,9 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         String customer_tp = customer_tp_txt.getText();
         String branch_name = branch_select.getSelectedItem().toString();
         String catogary_name = catogary_select.getSelectedItem().toString();
+         int status_of_the_number = status_select.getSelectedIndex();
 //        String location_name = location_select.getSelectedItem().toString();
-        boolean is_active = is_only_active.isSelected();
+//        boolean is_active = is_only_active.isSelected();
 
         List<String> location_names = location_m_select.getSelectedValuesList();
         System.out.println("location_names " + location_names);
@@ -367,7 +374,7 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tblGrid.getModel();
 
         try {
-            ResultSet set = customerMobileData.searchCustomerMobile(customer_tp, branch_name, location_names, is_active, catogary_name);
+            ResultSet set = customerMobileData.searchCustomerMobile(customer_tp, branch_name, location_names, catogary_name, status_of_the_number);
             set.last();
             set.beforeFirst();
             int x = 1;
@@ -499,18 +506,18 @@ public class CustomerMobileDataSearch extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> branch_select;
     private javax.swing.JComboBox<String> catogary_select;
     private javax.swing.JTextField customer_tp_txt;
-    private javax.swing.JCheckBox is_only_active;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> location_m_select;
+    private javax.swing.JComboBox<String> status_select;
     private javax.swing.JTable tblGrid;
     // End of variables declaration//GEN-END:variables
 }
